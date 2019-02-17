@@ -1,12 +1,16 @@
-pipeline:
-  build:
-    image: banzaicloud/drone-kaniko
-    pull: true
-    environment:
-      PLUGIN_REPO: mdicloud/nginx-helloworld
-      PLUGIN_CACHE: "true"
-    secrets:
-      - source: docker_username
-        target: plugin_username
-      - source: docker_password
-        target: plugin_password
+kind: pipeline
+name: default
+
+steps:
+- name: publish
+  image: banzaicloud/drone-kaniko
+  settings:
+    registry: hub.docker.com
+    repo: mdicloud/nginx-helloworld
+    tags: latest
+    cache: true
+    username:
+      from_secret: docker-username
+    password:
+      from_secret: docker-password
+
