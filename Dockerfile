@@ -1,4 +1,4 @@
-FROM arm32v7/nginx:1.15.6
+FROM nginx:1.15.8-alpine
 
 RUN rm /etc/nginx/conf.d/*
 ADD hello.conf /etc/nginx/conf.d/
